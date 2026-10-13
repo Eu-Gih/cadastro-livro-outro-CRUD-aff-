@@ -9,25 +9,25 @@ public class LivroService {
 
     private final LivroRepository repository;
 
-    public LivroService(LivroRepository repository){
+    public LivroService(LivroRepository repository) {
         this.repository = repository;
     }
 
-    public void SalvarLivro(Livro livro){
+    public void salvarLivro(Livro livro) {
         repository.saveAndFlush(livro);
     }
 
-    public Livro buscarLivroPorTitulo(String titulo){
+    public Livro buscarLivroPorTitulo(String titulo) {
         return repository.findByTitulo(titulo).orElseThrow(
                 () -> new RuntimeException("Titulo não encontrado!")
         );
     }
 
-    public void deletarLivroPorTitulo(String titulo){
+    public void deletarLivroPorTitulo(String titulo) {
         repository.deleteByTitulo(titulo);
     }
 
-    public void AtualizarLivroPorTitulo (String titulo, Livro livro){
+    public void atualizarLivroPorTitulo(String titulo, Livro livro) {
         Livro livroEntity = repository.findByTitulo(titulo).orElseThrow(
                 () -> new RuntimeException("Titulo não encontrado!"));
 

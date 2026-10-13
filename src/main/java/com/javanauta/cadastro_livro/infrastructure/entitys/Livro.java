@@ -15,18 +15,18 @@ import lombok.*;
 public class Livro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Titulo", unique = true)
+    @Column(name = "titulo", unique = true, nullable = false)
     private String titulo;
 
-    @Column(name = "Autor", unique = true)
+    @Column(name = "autor", nullable = false)
     private String autor;
 
-    @Column(name = "Genero", unique = true)
+    @Column(name = "genero")
     private String genero;
 
-    @Column(name = "Paginas", unique = true)
-    private String paginas;
+    @Column(name = "paginas")
+    private Integer paginas;
 }

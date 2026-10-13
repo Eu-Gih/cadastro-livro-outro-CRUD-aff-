@@ -8,10 +8,10 @@ import java.util.Optional;
 
 public interface LivroRepository extends JpaRepository<Livro, Integer> {
 
-   Optional <Livro> findByTitulo(String titulo);
+    Optional<Livro> findByTitulo(String titulo);
 
-   @Transactional
+    boolean existsByTitulo(String titulo);
+
+    @Transactional
     void deleteByTitulo(String titulo);
-
-
 }
