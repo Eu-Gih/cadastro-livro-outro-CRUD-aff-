@@ -27,9 +27,25 @@ public class LivroService {
         repository.deleteByTitulo(titulo);
     }
 
+    public void atualizarLivroPorId(int id, Livro livro) {
+        Livro livroEntity = repository.findById(id).orElseThrow(
+                () -> new RuntimeException("Titulo não encontrado!"));
+
+        Livro livroAtualizado = Livro.builder()
+                .titulo(livro.getTitulo() != null ? livro.getTitulo() : livroEntity.getTitulo())
+                .autor(livro.getAutor() != null ? livro.getAutor() : livroEntity.getAutor())
+                .genero(livro.getGenero() != null ? livro.getGenero() : livroEntity.getGenero())
+                .paginas(livro.getPaginas() != null ? livro.getPaginas() : livroEntity.getPaginas())
+                .id(livroEntity.getId())
+                .build();
+
+        repository.saveAndFlush(livroAtualizado);
+    }
+
     public void atualizarLivroPorTitulo(String titulo, Livro livro) {
         Livro livroEntity = repository.findByTitulo(titulo).orElseThrow(
                 () -> new RuntimeException("Titulo não encontrado!"));
+
 
         Livro livroAtualizado = Livro.builder()
                 .titulo(livro.getTitulo() != null ? livro.getTitulo() : livroEntity.getTitulo())
@@ -42,4 +58,6 @@ public class LivroService {
         repository.saveAndFlush(livroAtualizado);
 
     }
+
+
 }

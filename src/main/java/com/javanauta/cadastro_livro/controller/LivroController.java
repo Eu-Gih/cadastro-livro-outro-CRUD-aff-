@@ -30,10 +30,15 @@ public class LivroController {
         return ResponseEntity.ok(livroService.buscarLivroPorTitulo(titulo));
     }
 
-
-    @PutMapping
+    @PutMapping(params = "titulo")
     public ResponseEntity<Livro> atualizarLivroPorTitulo(@RequestParam String titulo, @RequestBody Livro livro) {
         livroService.atualizarLivroPorTitulo(titulo, livro);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping(params = "id")
+    public ResponseEntity<Livro> atualizarLivroPorId(@RequestParam int id, @RequestBody Livro livro) {
+        livroService.atualizarLivroPorId(id, livro);
         return ResponseEntity.ok().build();
     }
 
